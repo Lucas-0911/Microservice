@@ -31,10 +31,20 @@ public class ProductController {
         return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
 
-
     @PostMapping
-    public ResponseEntity<Long> addProduct(@RequestBody ProductRequest productRequest) {
+    public ResponseEntity<Long> addProduct(@RequestBody
+                                           ProductRequest productRequest) {
         Long productId = productService.addProduct(productRequest);
         return new ResponseEntity<>(productId, HttpStatus.CREATED);
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> reduceQuantity(@PathVariable("id")
+                                               Long productId,
+                                               @RequestParam
+                                               Long quantity) {
+        productService.reduceQuantity(productId, quantity);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
