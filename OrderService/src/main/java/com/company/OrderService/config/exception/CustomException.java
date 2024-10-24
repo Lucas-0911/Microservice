@@ -1,5 +1,8 @@
 package com.company.OrderService.config.exception;
 
+import lombok.Data;
+
+@Data
 public class CustomException extends RuntimeException {
 
     private String errorCode;
